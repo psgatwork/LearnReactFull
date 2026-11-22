@@ -1,8 +1,8 @@
 import { useState } from "react";
 import Header from "./components/Header/Header";
-import CoreConcepts from "./components/CoreConcepts/CoreConcepts";
+import CoreConceptsWrapper from "./components/Wrappers/CoreConceptWrapper";
 import TabButton from "./components/TabButton/TabButton";
-import { CORE_CONCEPTS, EXAMPLES } from "./data";
+import {  EXAMPLES } from "./data";
 
 function App() {
   const [selectedTopic, setSelectedTopic] = useState();
@@ -22,26 +22,17 @@ function App() {
   }
 
   function handleSelect(selectedTab) {
-    console.log(`Button clicked before: ${selectedTab}`);
     setSelectedTopic(selectedTab);
     selectedTabValue = selectedTab;
-    console.log(`Button clicked after: ${selectedTab}`);
   }
 
   console.log("tab content:", selectedTopic);
 
   return (
-    <div>
+    <>
       <Header />
       <main>
-        <section id="core-concepts">
-          <h2>Time to get started!</h2>
-          <ul>
-            {CORE_CONCEPTS.forEach((concept) => {
-              return (<CoreConcepts key={concept.title} {...concept} />);
-            })}
-          </ul>
-        </section>
+        <CoreConceptsWrapper />
         <section id="examples">
           <h2>Examples</h2>
           <menu>
@@ -75,7 +66,7 @@ function App() {
           </section>
         </section>
       </main>
-    </div>
+    </>
   );
 }
 
